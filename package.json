@@ -1,0 +1,118 @@
+{
+  "name": "vscode-file-size",
+  "displayName": "File Size",
+  "description": "Display the current file size in the status bar",
+  "version": "1.0.0",
+  "publisher": "biati",
+  "author": {
+    "name": "Biati Digital",
+    "url": "https://www.biati.com.mx"
+  },
+  "icon": "assets/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/biati-digital/vscode-file-size.git"
+  },
+  "bugs": {
+    "url": "https://github.com/biati-digital/vscode-file-size/issues"
+  },
+  "engines": {
+    "vscode": "^1.46.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "File Size",
+      "properties": {
+        "filesize.statusBarText": {
+          "order": 1,
+          "type": "string",
+          "default": "Gzip: ${GZIP_SIZE}",
+          "description": "Set the text to display in the status bar, you can write any text you want and use the following variables: ${GZIP_SIZE}, ${BROTLI_SIZE}, ${ORIGINAL_SIZE}, ${CREATED_DATE} and ${CHANGED_DATE}"
+        },
+        "filesize.sizeMode": {
+          "order": 2,
+          "type": "string",
+          "default": "Binary Mode",
+          "enum": [
+            "Binary Mode",
+            "IEC Standard"
+          ],
+          "enumDescriptions": [
+            "In Binary Mode 1 MB = 1024 KB",
+            "IEC Standard 1 MB = 1000 KB"
+          ],
+          "description": "Select the mode to calculate the file size"
+        },
+        "filesize.dateFormat": {
+          "order": 3,
+          "type": "string",
+          "default": "YYYY-MM-DD, HH:mm:ss",
+          "description": "Customize the format of the date, you can find more information and examples at https://day.js.org/docs/en/display/format"
+        },
+        "filesize.statusItemPosition": {
+          "order": 4,
+          "type": "string",
+          "default": "Left",
+          "enum": [
+            "Left",
+            "Right"
+          ],
+          "description": "Select the position of the status item"
+        },
+        "filesize.statusItemPriority": {
+          "order": 5,
+          "type": "number",
+          "default": 1,
+          "description": "The priority of the item. Higher values mean the item should be shown more to the left."
+        }
+      }
+    }
+  },
+  "keywords": [
+    "text",
+    "tools",
+    "utilities",
+    "file",
+    "file size"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/locutus": "^0.0.6",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.46.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "dependencies": {
+    "brotli-size": "^4.0.0",
+    "dayjs": "^1.11.10",
+    "gzip-size": "^7.0.0"
+  }
+}
