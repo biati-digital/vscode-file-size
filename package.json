@@ -1,7 +1,7 @@
 {
-  "name": "vscode-file-size",
-  "displayName": "File Size",
-  "description": "Display the current file size in the status bar",
+  "name": "vscode-file-size-and-stats",
+  "displayName": "File Size and Stats",
+  "description": "Display the current file size in the status bar and other file stats",
   "version": "1.0.0",
   "publisher": "biati",
   "author": {
@@ -22,6 +22,9 @@
   "categories": [
     "Other"
   ],
+  "galleryBanner": {
+    "color": "#f0f0f0"
+  },
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -30,13 +33,33 @@
     "configuration": {
       "title": "File Size",
       "properties": {
-        "filesize.statusBarText": {
+        "fileSizeAndStats.calculateSizeOn": {
+          "order": 0,
+          "type": "string",
+          "default": "File Save",
+          "enum": [
+            "File Save",
+            "File Change"
+          ],
+          "enumDescriptions": [
+            "Calculate the size when the file changes",
+            "Only calculate the size when the file is saved"
+          ],
+          "description": "Select when the extension should calculate the file size"
+        },
+        "fileSizeAndStats.statusBarText": {
           "order": 1,
           "type": "string",
           "default": "Gzip: ${GZIP_SIZE}",
           "description": "Set the text to display in the status bar, you can write any text you want and use the following variables: ${GZIP_SIZE}, ${BROTLI_SIZE}, ${ORIGINAL_SIZE}, ${CREATED_DATE} and ${CHANGED_DATE}"
         },
-        "filesize.sizeMode": {
+        "fileSizeAndStats.tooltipTitle": {
+          "order": 1,
+          "type": "string",
+          "default": "File Stats",
+          "description": "Set the title to display in the tooltip"
+        },
+        "fileSizeAndStats.sizeMode": {
           "order": 2,
           "type": "string",
           "default": "Binary Mode",
@@ -50,13 +73,13 @@
           ],
           "description": "Select the mode to calculate the file size"
         },
-        "filesize.dateFormat": {
+        "fileSizeAndStats.dateFormat": {
           "order": 3,
           "type": "string",
           "default": "YYYY-MM-DD, HH:mm:ss",
           "description": "Customize the format of the date, you can find more information and examples at https://day.js.org/docs/en/display/format"
         },
-        "filesize.statusItemPosition": {
+        "fileSizeAndStats.statusItemPosition": {
           "order": 4,
           "type": "string",
           "default": "Left",
@@ -66,11 +89,17 @@
           ],
           "description": "Select the position of the status item"
         },
-        "filesize.statusItemPriority": {
+        "fileSizeAndStats.statusItemPriority": {
           "order": 5,
           "type": "number",
           "default": 1,
           "description": "The priority of the item. Higher values mean the item should be shown more to the left."
+        },
+        "fileSizeAndStats.gzipLevel": {
+          "order": 9,
+          "type": "number",
+          "default": 9,
+          "description": "Gzip compression level"
         }
       }
     }
@@ -80,7 +109,8 @@
     "tools",
     "utilities",
     "file",
-    "file size"
+    "file size",
+    "file stats"
   ],
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -112,7 +142,6 @@
   },
   "dependencies": {
     "brotli-size": "^4.0.0",
-    "dayjs": "^1.11.10",
-    "gzip-size": "^7.0.0"
+    "dayjs": "^1.11.10"
   }
 }
