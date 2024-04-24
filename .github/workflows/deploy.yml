@@ -3,7 +3,7 @@ on:
     tags:
       - "*"
 
-name: Deploy Extension
+name: Deploy Extension to Marketplace
 jobs:
   deploy:
     runs-on: ubuntu-latest
