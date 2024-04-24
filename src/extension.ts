@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
-import { FileSize } from './fileSize';
+import { FileSizeAndStats } from './fileSizeStats';
 
-const fileSize = new FileSize();
+const stats = new FileSizeAndStats();
 
 export function activate(context: vscode.ExtensionContext) {
-	fileSize.activate(context);
+	stats.activate(context);
 }
 
 export function deactivate() {
-	fileSize.deactivate();
+	stats.deactivate();
 }
