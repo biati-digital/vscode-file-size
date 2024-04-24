@@ -31,7 +31,7 @@
   "main": "./dist/extension.js",
   "contributes": {
     "configuration": {
-      "title": "File Size",
+      "title": "File Size and Stats",
       "properties": {
         "fileSizeAndStats.calculateSizeOn": {
           "order": 0,
@@ -62,14 +62,14 @@
         "fileSizeAndStats.sizeMode": {
           "order": 2,
           "type": "string",
-          "default": "Binary Mode",
+          "default": "IEC Standard",
           "enum": [
-            "Binary Mode",
-            "IEC Standard"
+            "IEC Standard",
+            "Binary Mode"
           ],
           "enumDescriptions": [
-            "In Binary Mode 1 MB = 1024 KB",
-            "IEC Standard 1 MB = 1000 KB"
+            "IEC Standard 1 MB = 1000 KB",
+            "In Binary Mode 1 MB = 1024 KB"
           ],
           "description": "Select the mode to calculate the file size"
         },
